@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Algebra</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+ 
+ 
+<ion-list>
+  <ion-item *ngFor="let item of items | async">
+    <p ion-item class="mathjax" [innerHTML]="item.basic">
+      
+      <!--<ion-item  class="mathjax" [innerHTML]="item.basic"></ion-item>-->
+     
+    </p>
+  </ion-item>
+</ion-list>
+
+  
+
+    
+  
+
+  
+    <!--<ion-row *ngFor="let item of items | async">
+      <ion-col class="mathjax" [innerHTML]="item.basic"></ion-col>
+    </ion-row>-->
+  
+</ion-content>
