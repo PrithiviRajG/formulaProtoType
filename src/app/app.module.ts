@@ -3,8 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 
-import { AboutPage } from '../pages/about/about';
-import { ContactPage } from '../pages/contact/contact';
+import { Tier2Page } from '../pages/tier2Page/tier2';
+import { FormulaPage } from '../pages/formula/formula';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 
@@ -26,8 +26,8 @@ export const firebaseConfig = {
 @NgModule({
   declarations: [
     MyApp,
-    AboutPage,
-    ContactPage,
+    Tier2Page,
+    FormulaPage,
     HomePage,
     TabsPage
   ],
@@ -39,8 +39,8 @@ export const firebaseConfig = {
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    AboutPage,
-    ContactPage,
+    Tier2Page,
+    FormulaPage,
     HomePage,
     TabsPage
   ],

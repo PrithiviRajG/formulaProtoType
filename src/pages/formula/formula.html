@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Formula
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+   <ion-item *ngFor="let content of formulaRefSnapShot | async">
+    <p ion-item class="mathjax" [innerHTML]="content.val().basic">
+      
+      <!--<ion-item  class="mathjax" [innerHTML]="item.basic"></ion-item>-->
+     
+    </p>
+  </ion-item>
+  </ion-list>
+</ion-content>
