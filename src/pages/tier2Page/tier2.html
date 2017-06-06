@@ -1,7 +1,7 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      About
+      {{tier1Title}}
     </ion-title>
   </ion-navbar>
 </ion-header>
@@ -10,7 +10,7 @@
 
   <ion-list>
   <ion-item *ngFor="let content of tier1RefSnapShot | async">
-    <p (click)="tier2Selected(content.key)" ion-item class="mathjax" [innerHTML]="content.val().tier2Title">
+    <p (click)="tier2Selected(content.key, content.val().tier2Title)" ion-item class="mathjax" [innerHTML]="content.val().tier2Title">
       
       <!--<ion-item  class="mathjax" [innerHTML]="item.basic"></ion-item>-->
      

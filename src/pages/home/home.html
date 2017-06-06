@@ -9,7 +9,7 @@
  
 <ion-list>
   <ion-item *ngFor="let content of contentsRefSnapShot | async">
-    <p (click)="tier1Selected(content.key)" ion-item class="mathjax" [innerHTML]="content.val().tier1Title">
+    <p (click)="tier1Selected(content.key, content.val().tier1Title)" ion-item class="mathjax" [innerHTML]="content.val().tier1Title">
       
       <!--<ion-item  class="mathjax" [innerHTML]="item.basic"></ion-item>-->
      

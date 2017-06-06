@@ -13,7 +13,7 @@ export class HomePage {
   tier2Page : any;
 
   constructor(public navCtrl: NavController,
-  public afAuth: AngularFireAuth, public db: AngularFireDatabase, public nav:Nav) {
+   public db: AngularFireDatabase, public nav:Nav) {
     this.tier2Page=Tier2Page;
 this.contentsRefSnapShot=this.db.list('/contents', { preserveSnapshot: true });
 
@@ -28,9 +28,10 @@ this.contentsRefSnapShot=this.db.list('/contents', { preserveSnapshot: true });
 
 }
 
-tier1Selected(tier1Key){
+tier1Selected(tier1Key,tier1Title){
    this.nav.push(this.tier2Page, {
-          tier1key: tier1Key
+          tier1key: tier1Key,
+          tier1Title : tier1Title
       });
 
 }
