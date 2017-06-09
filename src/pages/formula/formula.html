@@ -7,6 +7,19 @@
 </ion-header>
 
 <ion-content>
+
+  <ion-card>
+  <ion-card-header>
+    Notes
+  </ion-card-header>
+
+  <ion-list>
+    <button  class="mathjax" [innerHTML]="note.val().note" ion-item *ngFor="let note of notesRefSnapShot | async">
+      
+    </button>
+  </ion-list>
+
+  </ion-card>
   <ion-list>
    <ion-item *ngFor="let content of formulaRefSnapShot | async">
     <p ion-item class="mathjax" [innerHTML]="content.val().basic">

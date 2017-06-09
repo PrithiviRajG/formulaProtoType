@@ -14,6 +14,8 @@ export class FormulaPage {
   tier1Title : any;
   tier2Title : any;
   formulaRefSnapShot: FirebaseListObservable<any[]>;
+  notesRefSnapShot: FirebaseListObservable<any[]>;
+  videoReady : Boolean = false;
 
   constructor(public navCtrl: NavController, public navParams:NavParams
   , public db: AngularFireDatabase, public nav:Nav, private admobFree: AdMobFree) {
@@ -21,12 +23,23 @@ export class FormulaPage {
     this.tier1key = navParams.data.tier1key;
     this.tier2Title = navParams.data.tier2Title;
     this.tier1Title = navParams.data.tier1Title;
+    
     console.log("tier 1 key "+this.tier1key);
     console.log("tier 2 key "+this.tier2key);
 
     this.formulaRefSnapShot=this.db.list('/formula/'+this.tier1key+'/'+this.tier2key, { preserveSnapshot: true });
+    this.notesRefSnapShot=this.db.list('/notes/'+this.tier1key+'/'+this.tier2key, { preserveSnapshot: true });
 
 this.formulaRefSnapShot.subscribe((data)=>{
+    console.log(data);
+    if(data!=null){
+      let mathjax=document.getElementsByClassName('mathjax');
+       eval('MathJax.Hub.Queue(["Typeset",MathJax.Hub, mathjax])');
+      eval('MathJax.Hub.Queue(["Typeset",MathJax.Hub, mathjax])');
+    }
+  });
+
+  this.notesRefSnapShot.subscribe((data)=>{
     console.log(data);
     if(data!=null){
       let mathjax=document.getElementsByClassName('mathjax');
@@ -51,14 +64,15 @@ this.admobFree.banner.prepare()
     // banner Ad is ready
     // if we set autoShow to false, then we will need to call the show method here
     console.log("success")
+    this.admobFree.banner.show();
   })
   .catch(e => console.log(e));
   */
 
   //Interstitial
 
-  /*
-  const interstitialConfig: AdMobFreeInterstitialConfig = {
+  
+/*  const interstitialConfig: AdMobFreeInterstitialConfig = {
  // add your config here
  // for the sake of this example we will just use the test config
  isTesting: true,
@@ -73,6 +87,7 @@ this.admobFree.interstitial.prepare()
     // interstitial Ad is ready
     // if we set autoShow to false, then we will need to call the show method here
     console.log("success")
+    this.admobFree.interstitial.show();
   })
   .catch(e => console.log(e));
 */
@@ -83,27 +98,36 @@ this.admobFree.interstitial.prepare()
   const rewardVideoConfig: AdMobFreeRewardVideoConfig = {
  // add your config here
  // for the sake of this example we will just use the test config
- isTesting: false,
- autoShow: true,
+ isTesting: true,
+ autoShow: false,
  id: 'ca-app-pub-5757421261447349/2397979315'
 };
 
 this.admobFree.rewardVideo.config(rewardVideoConfig);
 
-this.admobFree.rewardVideo.prepare()
-  .then(() => {
-    // interstitial Ad is ready
-    // if we set autoShow to false, then we will need to call the show method here
-    console.log("success");
-    this.admobFree.rewardVideo.show();
-  })
-  .catch(e => console.log(e));
-
-
+  this.admobFree.rewardVideo.prepare()
+    .then(() => {
+      // interstitial Ad is ready
+      // if we set autoShow to false, then we will need to call the show method here
+      console.log("reward video prepared");
+      this.admobFree.rewardVideo.isReady().then(()=>{
+        console.log("reward video is ready");
+          this.admobFree.rewardVideo.show().then((ad)=>{
+          console.log("show reward video");
+          console.log(ad);
+        }).catch((e)=>{
+          console.log("Ad display exception");
+          console.log(e);
+        });
+      }).catch(e => console.log(e))   
+    })
+    .catch(e => console.log(e));
+ 
 
 }
 
-
-
-
+getEngine(){
+  return this.admobFree;
 }
+}
+
